@@ -12,7 +12,7 @@ int main(void){
         if (key == "ADD")
             book.ADD();
 		if (key == "SEARCH")
-			
+			book.SEARCH();
         if (key == "EXIT")
             std::cout << "\nThanks bud\n";
     } while (key != "EXIT");

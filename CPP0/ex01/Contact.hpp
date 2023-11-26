@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <iostream>
-
+#include <iomanip>
 class Contact {
 	private:
 		std::string first_name;
@@ -15,7 +15,8 @@ class Contact {
 		Contact();
 		~Contact();
 		void getInfoBase(std::string keyword);
-		void showInfo();
+		void showInfoBase(std::string keyword);
+		void showInfoAll();
 };
 
 
