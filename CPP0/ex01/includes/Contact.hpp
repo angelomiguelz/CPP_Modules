@@ -14,7 +14,7 @@ class Contact {
 	public:
 		Contact();
 		~Contact();
-		void getInfoBase(std::string keyword);
+		int getInfoBase(std::string keyword);
 		void showInfoBase(std::string keyword);
 		void showInfoAll();
 };

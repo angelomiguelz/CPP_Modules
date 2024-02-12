@@ -5,11 +5,17 @@ Phonebook::Phonebook(){
 }
 
 void	Phonebook::ADD(){
-	contacts[index % 8].getInfoBase("FIRST NAME");
-	contacts[index % 8].getInfoBase("LAST NAME");
-	contacts[index % 8].getInfoBase("NICKNAME");
-	contacts[index % 8].getInfoBase("PHONE NUMBER");
-	contacts[index % 8].getInfoBase("DARKEST SECRET");
+	contacts[this->index % 8].getInfoBase("FIRST NAME");
+	contacts[this->index % 8].getInfoBase("LAST NAME");
+	contacts[this->index % 8].getInfoBase("NICKNAME");
+	if (contacts[this->index % 8].getInfoBase("PHONE NUMBER") == -1)
+	{
+		//system("clear");
+		std::cout << "Invalid phone number" << std::endl;
+		return ;
+	}
+	contacts[this->index % 8].getInfoBase("DARKEST SECRET");
+	//system("clear");
 	std::cout << "Contact Added" << std::endl;
 	index++;
 }
@@ -28,19 +34,19 @@ void Phonebook::SEARCH() {
 	int max = index - 1;
 
 	if (index == 0) {
+		system("clear");
 		std::cout << "No contacts to show" << std::endl;
 		return ;
 	}
 	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
 	for (int i = 0; i < index; i++) {
-		std::cout << "|    ";
-		std::cout << i;
-		std::cout << "     |";
+		std::cout << "|         " << i << "|";
 		contacts[i].showInfoBase("FIRST NAME");
 		std::cout << "|";
 		contacts[i].showInfoBase("LAST NAME");
 		std::cout << "|";
 		contacts[i].showInfoBase("NICKNAME");
+		std::cout << "|";
 		std::cout << std::endl;
 	}
 	while (1) {
@@ -62,14 +68,14 @@ void Phonebook::SEARCH() {
 	}
 }
 
-void	Contact::getInfoBase(std::string keyword) {
+int	Contact::getInfoBase(std::string keyword) {
 	std::string buff;
 	do {
 		if (std::cin.eof())
 			exit(1);
 		std::cout << ("ENTER ") << keyword << (": ");
 		getline(std::cin, buff);
-	} while(buff.empty()); //empty returns true while empty
+	} while(buff.empty());
 	if (keyword == "FIRST NAME") {
 		first_name = buff;
 	}
@@ -80,11 +86,16 @@ void	Contact::getInfoBase(std::string keyword) {
 		nickname = buff;
 	}
 	if (keyword == "PHONE NUMBER") {
-		phone = buff;
+		printf("%i\n", atoi(buff.c_str()));
+		if (!isdigit(atoi(buff.c_str())))
+			phone = buff;
+		else
+			return -1;
 	}
 	if (keyword == "DARKEST SECRET") {
 		secret = buff;
 	}	
+	return 0;
 }
 
 

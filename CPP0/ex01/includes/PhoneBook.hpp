@@ -6,11 +6,6 @@
 #include <iomanip>
 # include "Contact.hpp"
 
-//COLORS
-# define RST "\x1B[0m"
-# define KBLU "\x1B[34m"
-# define FBLU(x) KBLU x RST
-
 class Phonebook {
     private:
         Contact contacts[8];

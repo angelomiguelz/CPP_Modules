@@ -4,10 +4,12 @@ int main(void){
 
     std::string key;
     Phonebook book;
+	std::cout << "Welcome to the Phonebook" << std::endl;
+	std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
     do {
 		if (std::cin.eof())
 			exit(1);
-        std::cout << FBLU("Enter Command: ");
+        std::cout << ("Enter Command: ");
         getline(std::cin, key);
         if (key == "ADD")
             book.ADD();
@@ -16,4 +18,5 @@ int main(void){
         if (key == "EXIT")
             std::cout << "\nThanks bud\n";
     } while (key != "EXIT");
+	return 0;
 }
