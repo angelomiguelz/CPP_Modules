@@ -1,5 +1,5 @@
 #----- Executable Name-------------
-NAME = phonebook
+NAME = zombie
 
 #----- Colors----------------------
 DEFAULT = \033[0;39m
@@ -18,9 +18,7 @@ SRC_PATH = ./sources
 OBJ_PATH = ./objects
 INC = -I ./includes
 
-SRC_NAME = 	PhoneBook.cpp\
-			main.cpp\
-			Contact.cpp
+SRC_NAME = 	newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
 
 #----- Files----------------------
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))

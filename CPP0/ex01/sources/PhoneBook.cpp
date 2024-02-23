@@ -10,12 +10,12 @@ void	Phonebook::ADD(){
 	contacts[this->index % 8].getInfoBase("NICKNAME");
 	if (contacts[this->index % 8].getInfoBase("PHONE NUMBER") == -1)
 	{
-		//system("clear");
+		system("clear");
 		std::cout << "Invalid phone number" << std::endl;
 		return ;
 	}
 	contacts[this->index % 8].getInfoBase("DARKEST SECRET");
-	//system("clear");
+	system("clear");
 	std::cout << "Contact Added" << std::endl;
 	index++;
 }
@@ -40,6 +40,8 @@ void Phonebook::SEARCH() {
 	}
 	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
 	for (int i = 0; i < index; i++) {
+		if (i >= 8)
+			break;
 		std::cout << "|         " << i << "|";
 		contacts[i].showInfoBase("FIRST NAME");
 		std::cout << "|";
@@ -68,6 +70,40 @@ void Phonebook::SEARCH() {
 	}
 }
 
+int isNumberChar(const char *s)
+{
+	int i = -1;
+	while (s[++i])
+		if (s[i] < '0' || s[i] > '9')
+			return 1;
+	return 0;
+}
+
+std::string removeWhiteSpace(const std::string& s)
+{
+	std::string result;
+	size_t i = 0;
+	size_t j = s.length();
+	while (s[i] && std::isspace(s[i]))
+		i++;
+	while (s[--j] && std::isspace(s[j]))
+		;
+	j++;
+	if (i == j)
+		result += s[i];
+	while (i != j)
+		result += s[i++];
+	i = -1;
+	while (result[++i])
+		if (result[i] == '\t')
+		{
+			std::cout << "String doesn't accept tabs inside sentences" << std::endl;
+			result = "";
+			break;
+		}
+	return result;
+}
+
 int	Contact::getInfoBase(std::string keyword) {
 	std::string buff;
 	do {
@@ -75,6 +111,7 @@ int	Contact::getInfoBase(std::string keyword) {
 			exit(1);
 		std::cout << ("ENTER ") << keyword << (": ");
 		getline(std::cin, buff);
+		buff = removeWhiteSpace(buff);
 	} while(buff.empty());
 	if (keyword == "FIRST NAME") {
 		first_name = buff;
@@ -86,8 +123,7 @@ int	Contact::getInfoBase(std::string keyword) {
 		nickname = buff;
 	}
 	if (keyword == "PHONE NUMBER") {
-		printf("%i\n", atoi(buff.c_str()));
-		if (!isdigit(atoi(buff.c_str())))
+		if (isNumberChar(buff.c_str()) == 0)
 			phone = buff;
 		else
 			return -1;

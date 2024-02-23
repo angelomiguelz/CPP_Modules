@@ -1,7 +1,10 @@
 #include "PhoneBook.hpp"
 
-int main(void){
+int main(int ac, char **av){
 
+	(void)av;
+	if (ac > 1)
+		return 1;
     std::string key;
     Phonebook book;
 	std::cout << "Welcome to the Phonebook" << std::endl;

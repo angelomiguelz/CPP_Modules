@@ -1,11 +1,9 @@
 #include "Contact.hpp"
 
 Contact::Contact(){
-    return ;
 }
 
 Contact::~Contact(){
-    return ;
 }
 
 void Contact::showInfoBase(std::string keyword) {
