@@ -1,7 +1,7 @@
 #ifndef PHONE_BOOK_HPP
 #define PHONE_BOOK_HPP
 
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <iomanip>
 # include "Contact.hpp"
