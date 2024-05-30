@@ -1,5 +1,5 @@
 #----- Executable Name-------------
-NAME = ScalarConverter
+NAME = Whatever
 
 #----- Colors----------------------
 DEFAULT = \033[0;39m
@@ -18,7 +18,7 @@ SRC_PATH = ./sources
 OBJ_PATH = ./objects
 INC = -I ./includes
 
-SRC_NAME = 	main.cpp Scalar.cpp
+SRC_NAME = 	main.cpp
 
 #----- Files----------------------
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))
