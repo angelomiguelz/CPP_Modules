@@ -1,5 +1,5 @@
 #----- Executable Name-------------
-NAME = bureaucrat
+NAME = coffee-making
 
 #----- Colors----------------------
 DEFAULT = \033[0;39m
@@ -18,7 +18,7 @@ SRC_PATH = ./sources
 OBJ_PATH = ./objects
 INC = -I ./includes
 
-SRC_NAME = 	main.cpp Bureaucrat.cpp
+SRC_NAME = 	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 #----- Files----------------------
 OBJS = $(addprefix $(OBJ_PATH)/, $(SRC_NAME:.cpp=.o))

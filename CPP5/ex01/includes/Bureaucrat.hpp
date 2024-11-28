@@ -2,7 +2,6 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include <fstream>
 #include "Form.hpp"
 
 class Form;
@@ -10,8 +9,8 @@ class Form;
 class Bureaucrat
 {
 private:
-	const std::string _name;
-	int _grade;
+	const std::string name;
+	int grade;
 
 public:
 	// Exception Classes
@@ -29,17 +28,18 @@ public:
 	~Bureaucrat();
 	// Copy Constructor
 	Bureaucrat(Bureaucrat const &src);
-	// Operator Overload
+	// Copy Assignment Operator
 	Bureaucrat &operator=(Bureaucrat const &rhs);
-	// Setters & Getters
-	std::string getName();
+	// Settes and Getters
+	const std::string getName();
 	int getGrade();
 	// Member Functions
-	void incrementGrade();
-	void decrementGrade();
-	void signForm(Form &f);
+	void increment();
+	void decrement();
+	void signForm(Form &form);
 };
 
+// Operator Overloads
 std::ostream &operator<<(std::ostream &out, Bureaucrat &bureaucrat);
 
 #endif

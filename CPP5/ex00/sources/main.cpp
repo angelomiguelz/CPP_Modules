@@ -38,7 +38,7 @@ int main(void)
 	{
 		Bureaucrat normal("Normal", 150);
 		std::cout << normal;
-		normal.incrementGrade();
+		normal.increment();
 		std::cout << normal;
 	}
 	catch (std::exception &e)
@@ -50,7 +50,7 @@ int main(void)
 	try
 	{
 		Bureaucrat bad("Normal", 1);
-		bad.incrementGrade();
+		bad.increment();
 	}
 	catch (std::exception &e)
 	{
@@ -62,7 +62,7 @@ int main(void)
 	{
 		Bureaucrat normal("Normal", 1);
 		std::cout << normal;
-		normal.decrementGrade();
+		normal.decrement();
 		std::cout << normal;
 	}
 	catch (std::exception &e)
@@ -74,7 +74,7 @@ int main(void)
 	try
 	{
 		Bureaucrat bad("Bad", 150);
-		bad.decrementGrade();
+		bad.decrement();
 	}
 	catch (std::exception &e)
 	{

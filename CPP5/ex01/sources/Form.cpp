@@ -1,75 +1,101 @@
 #include "../includes/Form.hpp"
 
-// Orthodox Canon Form
+// OCF
 
-Form::Form(): _name("Default"), _isSigned(false), _signGrade(42), _executeGrade(42) {
-	std::cout << "Default Constructor Called" << std::endl;
+// Constructor & Destructor
+
+Form::Form() : name("Default"), isSigned(false), signGrade(150), executeGrade(150)
+{
+	std::cout << "Form Default Constructor Called" << std::endl;
 }
 
-Form::Form(std::string name, int executeGrade, int signGrade): _name(name), _isSigned(false), _signGrade(signGrade),  _executeGrade(executeGrade) {
-	std::cout << "Name and Grade Constructor Called" << std::endl;
-	if (this->_executeGrade < 1 || this->_signGrade < 1)
+Form::Form(std::string name, int signGrade, int executeGrade) : name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade)
+{
+	std::cout << "Form Custom Constructor Called" << std::endl;
+	if (signGrade < 1 || executeGrade < 1)
 		throw GradeTooHighException();
-	if (this->_executeGrade > 150 || this->_signGrade > 150)
+	if (signGrade > 150 || executeGrade > 150)
 		throw GradeTooLowException();
 }
 
-Form::Form(Form const &src): _name(src._name), _isSigned(src._isSigned), _signGrade(src._signGrade), _executeGrade(src._executeGrade) {
-	std::cout << "Copy Constructor Called" << std::endl;
+Form::~Form()
+{
+	std::cout << "Form Destructor Called" << std::endl;
 }
 
-Form &Form::operator=(Form const &rhs) {
-	std::cout << "Copy Assignment Operator Called" << std::endl;
-	if (this != &rhs) {
-		this->_isSigned = rhs._isSigned;
-	}
+// Copy Constructor & Copy Assignment Operator
+
+Form::Form(Form const &src) : name(src.name), isSigned(src.isSigned), signGrade(src.signGrade), executeGrade(src.executeGrade)
+{
+	std::cout << "Form Copy Constructor Called" << std::endl;
+}
+
+Form &Form::operator=(Form const &rhs)
+{
+	std::cout << "Form Copy Assignment Operator Called" << std::endl;
+	if (this != &rhs)
+		this->isSigned = rhs.isSigned;
 	return *this;
 }
 
-Form::~Form() {
-	std::cout << "Form Default Deconstructor Called" << std::endl;
+// Setters and Getters
+
+const std::string Form::getName()
+{
+	return this->name;
 }
 
-// Demanded by the subject
-
-std::string Form::getName() {
-	return (this->_name);
+bool Form::getIsSigned()
+{
+	return this->isSigned;
 }
 
-bool Form::getSignState() {
-	return (this->_isSigned);
+int Form::getSignGrade()
+{
+	return this->signGrade;
 }
 
-int Form::getSignGrade() {
-	return (this->_signGrade);
+int Form::getExecuteGrade()
+{
+	return this->executeGrade;
 }
 
-int Form::getExecuteGrade() {
-	return (this->_executeGrade);
-}
+// Member Functions
 
-std::ostream &operator<<(std::ostream &out, Form &form) {
-	std::string state;
-	if (form.getSignState() == false)
-		state = "is not";
+void Form::beSigned(Bureaucrat &bureaucrat)
+{
+	if (this->getIsSigned())
+	{
+		std::cout << "Form is already signed" << std::endl;
+		return;
+	}
+	if (bureaucrat.getGrade() <= this->getSignGrade())
+		this->isSigned = true;
 	else
-		state = "is";
-	out << form.getName() << ", " << state << " signed and has a SignGrade of " << form.getSignGrade() << " and an ExecuteGrade of " << form.getExecuteGrade() << std::endl;
-	return (out);
+		throw GradeTooLowException();
 }
 
-void Form::beSigned(Bureaucrat &b) {
-	if (b.getGrade() > this->_signGrade)
-		throw(GradeTooLowException());
-	this->_isSigned = true;
+// Exception Classes
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+	return "Invalid Grade: Too High";
 }
 
-// Exceptions
-
-const char *Form::GradeTooHighException::what() const throw() {
-	return ("The given grade is too high");
+const char *Form::GradeTooLowException::what() const throw()
+{
+	return "Invalid Grade: Too Low";
 }
 
-const char *Form::GradeTooLowException::what() const throw() {
-	return ("The given grade is too low");
+// Operator Overloads
+
+std::ostream &operator<<(std::ostream &out, Form &form)
+{
+	out << "---Form Info---" << std::endl;
+	out << "| Name: " << form.getName() << std::endl;
+	out << "| Is Signed?: " << (form.getIsSigned() ? "Yes" : "No") << std::endl;
+	out << "| Sign Grade: " << form.getSignGrade() << std::endl;
+	out << "| Execute Grade: " << form.getExecuteGrade() << std::endl;
+	out << "---------------" << std::endl;
+	return out;
 }

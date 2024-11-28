@@ -1,11 +1,11 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 private:
 	const std::string name;
@@ -24,23 +24,25 @@ public:
 		const char *what() const throw();
 	};
 	// Constructor & Destructor
-	Form();
-	Form(std::string name, int signGrade, int executeGrade);
-	~Form();
+	AForm();
+	AForm(std::string name, int signGrade, int executeGrade);
+	virtual ~AForm();
 	// Copy Constructor
-	Form(Form const &src);
+	AForm(AForm const &src);
 	// Copy Assignment Operator
-	Form &operator=(Form const &rhs);
-	// Settes and Getters
-	const std::string getName();
-	bool getIsSigned();
-	int getSignGrade();
-	int getExecuteGrade();
+	AForm &operator=(AForm const &rhs);
+	// Setters and Getters
+	std::string getName() const;
+	bool getIsSigned() const;
+	int getSignGrade() const;
+	int getExecuteGrade() const;
 	// Member Functions
 	void beSigned(Bureaucrat &bureaucrat);
+	// Pure Virtual Function
+	virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 // Operator Overloads
-std::ostream &operator<<(std::ostream &out, Form &form);
+std::ostream &operator<<(std::ostream &out, AForm &form);
 
 #endif

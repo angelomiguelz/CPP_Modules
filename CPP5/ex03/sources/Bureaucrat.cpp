@@ -42,12 +42,12 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 
 // Setters and Getters
 
-const std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
 	return this->grade;
 }
@@ -68,7 +68,7 @@ void Bureaucrat::decrement()
 	this->grade++;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -78,6 +78,19 @@ void Bureaucrat::signForm(Form &form)
 	catch (std::exception &err)
 	{
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << err.what() << "." << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch (std::exception &err)
+	{
+		std::cout << "Form Execution Failed because: " << err.what() << std::endl;
+		std::cout << "Details: " << this->getName() << " tried to execute " << form.getName() << std::endl;
 	}
 }
 

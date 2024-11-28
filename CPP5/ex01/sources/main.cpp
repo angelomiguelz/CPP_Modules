@@ -39,7 +39,7 @@ int main(void)
 		{
 			Bureaucrat normal("Normal", 150);
 			std::cout << normal;
-			normal.incrementGrade();
+			normal.increment();
 			std::cout << normal;
 		}
 		catch (std::exception &e)
@@ -51,7 +51,7 @@ int main(void)
 		try
 		{
 			Bureaucrat bad("Normal", 1);
-			bad.incrementGrade();
+			bad.increment();
 		}
 		catch (std::exception &e)
 		{
@@ -63,7 +63,7 @@ int main(void)
 		{
 			Bureaucrat normal("Normal", 1);
 			std::cout << normal;
-			normal.decrementGrade();
+			normal.decrement();
 			std::cout << normal;
 		}
 		catch (std::exception &e)
@@ -75,7 +75,7 @@ int main(void)
 		try
 		{
 			Bureaucrat bad("Bad", 150);
-			bad.decrementGrade();
+			bad.decrement();
 		}
 		catch (std::exception &e)
 		{
@@ -117,38 +117,54 @@ int main(void)
 		{
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << std::endl << "--Be Signed Success--" << std::endl;
-		try {
-			Bureaucrat b("Miguel" , 1);
+		std::cout << std::endl
+				  << "--Be Signed Success--" << std::endl;
+		try
+		{
+			Bureaucrat b("Miguel", 1);
 			Form form("Sign", 150, 150);
 			form.beSigned(b);
 			std::cout << form;
-		} catch (const std::exception &e) {
+		}
+		catch (const std::exception &e)
+		{
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << std::endl << "--Be Signed Failure--" << std::endl;
-		try {
-			Bureaucrat b("Miguel" , 42);
+		std::cout << std::endl
+				  << "--Be Signed Failure--" << std::endl;
+		try
+		{
+			Bureaucrat b("Miguel", 42);
 			Form form("Sign", 40, 40);
 			form.beSigned(b);
 			std::cout << form;
-		} catch (const std::exception &e) {
+		}
+		catch (const std::exception &e)
+		{
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << std::endl << "--Sign Form Success--" << std::endl;
-		try {
+		std::cout << std::endl
+				  << "--Sign Form Success--" << std::endl;
+		try
+		{
 			Bureaucrat b("Miguel", 42);
 			Form form("Form", 150, 150);
 			b.signForm(form);
-		} catch (const std::exception &e) {
+		}
+		catch (const std::exception &e)
+		{
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << std::endl << "--Sign Form Failure--" << std::endl;
-		try {
+		std::cout << std::endl
+				  << "--Sign Form Failure--" << std::endl;
+		try
+		{
 			Bureaucrat b("Miguel", 69);
 			Form form("Form", 50, 50);
 			b.signForm(form);
-		} catch (const std::exception &e) {
+		}
+		catch (const std::exception &e)
+		{
 			std::cout << e.what() << std::endl;
 		}
 		std::cout << std::endl;
