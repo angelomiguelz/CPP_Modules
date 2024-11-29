@@ -32,10 +32,10 @@ public:
 	// Copy Assignment Operator
 	Form &operator=(Form const &rhs);
 	// Settes and Getters
-	const std::string getName();
-	bool getIsSigned();
-	int getSignGrade();
-	int getExecuteGrade();
+	std::string getName() const;
+	bool getIsSigned() const;
+	int getSignGrade() const;
+	int getExecuteGrade() const;
 	// Member Functions
 	void beSigned(Bureaucrat &bureaucrat);
 };

@@ -31,8 +31,8 @@ public:
 	// Copy Assignment Operator
 	Bureaucrat &operator=(Bureaucrat const &rhs);
 	// Settes and Getters
-	const std::string getName();
-	int getGrade();
+	std::string getName() const;
+	int getGrade() const;
 	// Member Functions
 	void increment();
 	void decrement();

@@ -40,22 +40,22 @@ Form &Form::operator=(Form const &rhs)
 
 // Setters and Getters
 
-const std::string Form::getName()
+std::string Form::getName() const
 {
 	return this->name;
 }
 
-bool Form::getIsSigned()
+bool Form::getIsSigned() const
 {
 	return this->isSigned;
 }
 
-int Form::getSignGrade()
+int Form::getSignGrade() const
 {
 	return this->signGrade;
 }
 
-int Form::getExecuteGrade()
+int Form::getExecuteGrade() const
 {
 	return this->executeGrade;
 }

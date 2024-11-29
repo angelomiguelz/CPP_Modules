@@ -5,6 +5,11 @@
 
 int main(void)
 {
+	// Bureaucrat god("God", 1);
+	// RobotomyRequestForm test("test");
+	// god.signForm(test);
+	// god.executeForm(test);
+	// return 0;
 	try
 	{
 		std::cout << "\n=== Creating Bureaucrats ===\n"
