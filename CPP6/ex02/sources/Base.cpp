@@ -2,7 +2,7 @@
 
 Base *generate(void)
 {
-	std::srand(std::time(nullptr));
+	std::srand(time(NULL));
 	int n = std::rand() % 3;
 	switch (n)
 	{
