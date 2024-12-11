@@ -33,6 +33,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INC) -o $(NAME)
 	clear
 	@echo "$(GREEN)$(NAME) compiled $(DEFAULT)"
+	@echo "$(GREEN)Usage:$(DEFAULT) ./$(NAME)"
 
 #----- Create Objects----------------------
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.cpp
