@@ -59,13 +59,6 @@ void convPseudo(std::string literal)
 	}
 }
 
-bool isChar(std::string literal)
-{
-	if (literal.length() == 1 && !isdigit(literal[0]))
-		return true;
-	return false;
-}
-
 void convChar(std::string literal)
 {
 	char c = literal[0];
@@ -76,23 +69,10 @@ void convChar(std::string literal)
 	print(literal, i, d, f);
 }
 
-bool isInt(std::string literal)
-{
-	try
-	{
-		std::size_t pos;
-		std::stoi(literal, &pos);
-		return true;
-	}
-	catch (std::exception &e)
-	{
-		return false;
-	}
-}
 
 void convInt(std::string literal)
 {
-	int i = std::stoi(literal);
+	int i = std::atoi(literal.c_str());
 	std::string c = "";
 	double d = static_cast<double>(i);
 	float f = static_cast<float>(i);
@@ -108,23 +88,9 @@ void convInt(std::string literal)
 	print(c, i, d, f);
 }
 
-bool isDouble(std::string literal)
-{
-	try
-	{
-		std::size_t pos;
-		std::stod(literal, &pos);
-		return true;
-	}
-	catch (std::exception &e)
-	{
-		return false;
-	}
-}
-
 void convDouble(std::string literal)
 {
-	double d = std::stod(literal);
+	double d = std::atof(literal.c_str());
 	std::string c = "";
 	int i = static_cast<int>(d);
 	float f = static_cast<float>(d);
@@ -139,23 +105,9 @@ void convDouble(std::string literal)
 	print(c, i, d, f);
 }
 
-bool isFloat(std::string literal)
-{
-	try
-	{
-		std::size_t pos;
-		std::stof(literal, &pos);
-		return true;
-	}
-	catch (std::exception &e)
-	{
-		return false;
-	}
-}
-
 void convFloat(std::string literal)
 {
-	float f = std::stof(literal);
+	float f = std::atof(literal.c_str());
 	std::string c = "";
 	int i = static_cast<int>(f);
 	int d = static_cast<double>(f);
@@ -179,14 +131,12 @@ void Scalar::convert(std::string literal)
 	}
 	if (isPseudo(literal))
 		convPseudo(literal);
-	else if (isChar(literal))
+	else if (literal.length() == 1 && !std::isdigit(literal[0]) && std::isprint(literal[0]))
 		convChar(literal);
-	else if (isInt(literal))
+	else if (literal.find_first_of('.') == literal.npos)
 		convInt(literal);
-	else if (isDouble(literal))
-		convDouble(literal);
-	else if (isFloat(literal))
+	else if (literal[literal.length() - 1] == 'f')
 		convFloat(literal);
 	else
-		std::cout << "invalid input" << std::endl;
+		convDouble(literal);
 }
