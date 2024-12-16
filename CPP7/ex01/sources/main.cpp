@@ -1,10 +1,12 @@
 #include "../includes/iter.hpp"
 
-void makeIt42(int &n) {
+void makeIt42(int &n)
+{
 	n = 42;
 }
 
-void iLoveMinishell(std::string &s) {
+void iLoveMinishell(std::string &s)
+{
 	s = "ILOVEMINISHELL";
 }
 

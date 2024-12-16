@@ -2,52 +2,60 @@
 #define ARRAY_HPP
 
 template <class T>
-class Array {
-	public:
-		Array(): array(new T[0]), len(0) {};
+class Array
+{
+private:
+	T *array;
+	unsigned int len;
 
-		Array(unsigned int n): array(new T[n]), len(n) {};
+public:
+	Array() : array(new T[0]), len(0) {};
 
-		Array(Array const &o): array(new T[o.len]), len(o.len) {
-			for (unsigned int i = 0; i < o.len; i++)
-				this->array[i] = o.array[i];
-		}
+	Array(unsigned int n) : array(new T[n]), len(n) {};
 
-		Array &operator=(Array const &rhs) {
-			if (this != rhs) {
-				if (this->array != NULL)
-					delete[] this->array;
-				this->len = rhs.len;
-				this->array = new T[rhs.len];
-				for (unsigned int i = 0; i < rhs.len; i++)
-					this->array[i] = rhs.array[i];
-			}
-			return (*this);
-		}
+	Array(Array const &o) : array(new T[o.len]), len(o.len)
+	{
+		for (unsigned int i = 0; i < o.len; i++)
+			this->array[i] = o.array[i];
+	}
 
-		~Array() {
+	Array &operator=(Array const &rhs)
+	{
+		if (this != rhs)
+		{
 			if (this->array != NULL)
 				delete[] this->array;
-		};
-
-		T &operator[](unsigned int i) {
-			if (i < this->len)
-				return this->array[i];
-			else
-				throw OutOfBounds();
+			this->len = rhs.len;
+			this->array = new T[rhs.len];
+			for (unsigned int i = 0; i < rhs.len; i++)
+				this->array[i] = rhs.array[i];
 		}
+		return (*this);
+	}
 
-		class OutOfBounds : public std::exception {
-			virtual const char *what() const throw() {
-				return ("Out Of Bounds");
-			}
-		};
+	~Array()
+	{
+		if (this->array != NULL)
+			delete[] this->array;
+	};
 
-		unsigned int size() {return this->len;}
+	T &operator[](unsigned int i)
+	{
+		if (i < this->len)
+			return this->array[i];
+		else
+			throw OutOfBounds();
+	}
 
-	private:
-		T *array;
-		unsigned int len;
+	class OutOfBounds : public std::exception
+	{
+		const char *what() const throw()
+		{
+			return ("Out Of Bounds");
+		}
+	};
+
+	unsigned int size() const { return this->len; }
 };
 
 #endif
