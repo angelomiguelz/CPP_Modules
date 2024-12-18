@@ -3,6 +3,11 @@
 #include <array>
 #include <forward_list>
 
+const char *ValueNotFound::what() const throw()
+{
+	return "Value not found in container";
+}
+
 int main(int ac, char **av)
 {
 	// data - limits should be > 0
