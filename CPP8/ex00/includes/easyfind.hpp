@@ -5,19 +5,14 @@
 #include <algorithm>
 #include <vector>
 
-// exception class
-class ValueNotFound : public std::exception
-{
-public:
-	const char *what() const throw();
-};
-
 template <typename T>
-typename T::iterator easyfind(T &c, int find)
+void easyfind(T &c, int find)
 {
-	typename T::iterator i = std::find(c.begin(), c.end(), find);
-	if (i == c.end())
-		throw ValueNotFound();
-	return i;
+	if (std::find(c.begin(), c.end(), find) != c.end())
+	{
+		std::cout << "Found " << find << " in given container" << std::endl;
+		return;
+	}
+	throw std::runtime_error("Element not found in given container");
 }
 #endif

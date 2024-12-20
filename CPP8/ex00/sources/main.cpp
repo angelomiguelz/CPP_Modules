@@ -3,11 +3,6 @@
 #include <array>
 #include <forward_list>
 
-const char *ValueNotFound::what() const throw()
-{
-	return "Value not found in container";
-}
-
 int main(int ac, char **av)
 {
 	// data - limits should be > 0
@@ -23,9 +18,7 @@ int main(int ac, char **av)
 	std::cout << "Finding: " << find << " > in array : ";
 	try
 	{
-		std::array<int, 9>::iterator it = easyfind(a, find);
-		(void)it;
-		std::cout << "SUCCESS" << std::endl;
+		easyfind(a, find);
 	}
 	catch (std::exception &e)
 	{
@@ -33,14 +26,12 @@ int main(int ac, char **av)
 	}
 	// vector
 	std::vector<int> v;
-	for (int i = 0; i < vectorLimit; i++)
+	for (int i = 0; i <= vectorLimit; i++)
 		v.push_back(i);
 	std::cout << "Finding: " << find << " > in vector : ";
 	try
 	{
-		std::vector<int>::iterator it = easyfind(v, find);
-		(void)it;
-		std::cout << "SUCCESS" << std::endl;
+		easyfind(v, find);
 	}
 	catch (std::exception &e)
 	{
@@ -53,9 +44,7 @@ int main(int ac, char **av)
 	std::cout << "Finding: " << find << " > in deque : ";
 	try
 	{
-		std::deque<int>::iterator it = easyfind(d, find);
-		(void)it;
-		std::cout << "SUCCESS" << std::endl;
+		easyfind(d, find);
 	}
 	catch (std::exception &e)
 	{
@@ -68,9 +57,7 @@ int main(int ac, char **av)
 	std::cout << "Finding: " << find << " > in list : ";
 	try
 	{
-		std::list<int>::iterator it = easyfind(l, find);
-		(void)it;
-		std::cout << "SUCCESS" << std::endl;
+		easyfind(l, find);
 	}
 	catch (std::exception &e)
 	{
@@ -83,9 +70,7 @@ int main(int ac, char **av)
 	std::cout << "Finding: " << find << " > in forward_list : ";
 	try
 	{
-		std::forward_list<int>::iterator it = easyfind(f, find);
-		(void)it;
-		std::cout << "SUCCESS" << std::endl;
+		easyfind(f, find);
 	}
 	catch (std::exception &e)
 	{

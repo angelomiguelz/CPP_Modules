@@ -12,17 +12,6 @@ private:
 	unsigned int limit;
 
 public:
-	class SpanIsFull : public std::exception
-	{
-	public:
-		const char *what() const throw();
-	};
-
-	class SizeTooSmall : public std::exception
-	{
-	public:
-		const char *what() const throw();
-	};
 	Span();
 	Span(unsigned int limit);
 	~Span();
