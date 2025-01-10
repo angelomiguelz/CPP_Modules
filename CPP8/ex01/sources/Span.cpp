@@ -69,6 +69,5 @@ unsigned int Span::longestSpan()
 {
 	if (v.size() < 2 || limit < 2)
 		throw std::runtime_error("Size not enough to calculate span");
-	std::sort(v.begin(), v.end());
-	return v[v.size() - 1] - v[0];
+	return (*std::max_element(v.begin(), v.end()) - *std::min_element(v.begin(), v.end()));
 }
