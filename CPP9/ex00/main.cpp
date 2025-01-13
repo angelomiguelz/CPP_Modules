@@ -11,6 +11,7 @@ int main(int ac, char **av)
 	try
 	{
 		BitcoinExchange exchange;
+		exchange.exchange(av[1]);
 	}
 	catch (std::exception &e)
 	{

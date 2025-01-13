@@ -5,6 +5,7 @@
 #include <fstream>
 #include <algorithm>
 #include <map>
+#include <sstream>
 
 class BitcoinExchange
 {
@@ -17,5 +18,10 @@ public:
 	~BitcoinExchange();
 	BitcoinExchange(BitcoinExchange const &o);
 	BitcoinExchange &operator=(BitcoinExchange const &rhs);
+	// member functions
+	void exchange(std::string fileName);
+	bool validDate(std::string);
+	bool validValue(std::string valueStr);
 };
+std::string trim(const std::string &str);
 #endif
