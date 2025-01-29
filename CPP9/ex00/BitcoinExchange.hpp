@@ -11,6 +11,8 @@ class BitcoinExchange
 {
 private:
 	std::map<std::string, double> rates;
+	void processDataLine(const std::string &line);
+	void processInputLine(const std::string &line);
 
 public:
 	// OCF
